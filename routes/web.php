@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Admin\VideogameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, "index"])->name("home");
+
+Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(function(){
+    Route::get("/videogames", [VideogameController::class,"index"])->name("videogames.index");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
