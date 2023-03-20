@@ -13,9 +13,9 @@ class VideogamesApiController extends Controller
      */
     public function index()
     {
+        $game = Videogame::all();
 
-
-        return response()->json(compact('videogames'));
+        return response()->json(compact('game'));
     }
 
     /**
