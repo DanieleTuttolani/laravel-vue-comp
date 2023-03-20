@@ -31,7 +31,11 @@ class VideogamesApiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $game = Videogame::find($id);
+        if (!$game) {
+            return response(null, 404);
+        }
+        return response()->json($game);
     }
 
     /**

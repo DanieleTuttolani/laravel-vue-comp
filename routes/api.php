@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Admin\VideogameController;
 use App\Http\Controllers\Api\VideogamesApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/index', [VideogamesApiController::class, 'index']);
+Route::get('/videogame/{videogame}', [VideogamesApiController::class, 'show']);
