@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('videogames', function (Blueprint $table) {
             $table->id();
-            $table->string("title", 30)->unique();
+            $table->string("title", 250)->unique();
             $table->float("price", 4 , 2);
-            $table->boolean("available");
+            $table->boolean("available")->default(false);
             $table->string("image")->nullable();
+            $table->text("description");
             $table->timestamps();
         });
     }

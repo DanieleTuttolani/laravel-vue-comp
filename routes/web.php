@@ -16,10 +16,18 @@ use App\Http\Controllers\Admin\VideogameController;
 |
 */
 
+Route::get('/home', [HomeController::class, "index"])->name("home");
 Route::get('/', [HomeController::class, "index"])->name("home");
+
 
 Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(function(){
     Route::get("/videogames", [VideogameController::class,"index"])->name("videogames.index");
+    Route::get("/videogames/create", [VideogameController::class,"create"])->name("videogames.create");
+    Route::post("/videogames", [VideogameController::class,"store"])->name("videogames.store");
+    Route::get("/videogames/{videogame}", [VideogameController::class,"show"])->name("videogames.show");
+    Route::get("/videogames{videogame}/edit", [VideogameController::class,"edit"])->name("videogames.edit");
+    Route::put("/videogames/{videogame}", [VideogameController::class,"update"])->name("videogames.update");
+    Route::delete("/videogames/{videogame}", [VideogameController::class,"destroy"])->name("videogames.destroy");
 });
 
 
