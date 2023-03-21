@@ -1,0 +1,25 @@
+.end{
+    height: 300px;
+    margin: 0 0 0 10px;
+}
+
+// cards
+.col{
+    .img-side{
+        width: 250px;
+        padding: 10px 0;
+        z-index: 1;
+    }
+    .info-side{
+        padding: 10px;
+        width: 130px;
+        margin: 11px 0 11px 0 ;
+        z-index: 0;
+        transform: translate(-100px,  -1px);
+        height: 130px;
+        transition: 0.2s linear;
+    }
+    &:hover .info-side{
+        transform: translate(-5px,  -1px);
+    }
+}
