@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\VideogameController;
 use App\Http\Controllers\Api\VideogamesApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewContact;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/index', [VideogamesApiController::class, 'index']);
 Route::get('/videogame/{id}', [VideogamesApiController::class, 'show']);
+Route::post('/contact', [NewContact::class, 'send']);

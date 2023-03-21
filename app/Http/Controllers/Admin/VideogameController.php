@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Videogame;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
