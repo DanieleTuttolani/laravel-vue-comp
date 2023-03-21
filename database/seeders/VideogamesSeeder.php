@@ -13,14 +13,16 @@ class VideogamesSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(Faker $faker): void
-    {
-        for ($i = 0; $i < 15; $i++) {
-            $new_game = new Videogame();
-            $new_game->title = $faker->name();
-            $new_game->price = $faker->randomNumber(2, true);
-            $new_game->available = $faker->boolean();
-            $new_game->image = $faker->imageUrl(400, 400, 'animals', true);
-            $new_game->save();
-        }
+{
+    for ($i = 0; $i < 15; $i++) {
+        $new_game = new Videogame();
+        $new_game->title = $faker->sentence();
+        $new_game->price = $faker->randomNumber(2, true);
+        $new_game->available = $faker->boolean();
+        $new_game->description = $faker->text();
+        $new_game->image = $faker->imageUrl(400, 400, 'animals', true);
+        $new_game->save();
     }
+}
+
 }
