@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/index', [VideogamesApiController::class, 'index']);
-Route::get('/videogame/{videogame}', [VideogamesApiController::class, 'show']);
+Route::get('/videogame/{id}', [VideogamesApiController::class, 'show']);

@@ -9,12 +9,14 @@
             @auth
             <h1>Applicazione Admin</h1>
             <p>Negozio di Videogiochi</p>
+            <p>Titoli Disponibili</p>
             <div class="text-center">
                 <a href="{{route('admin.videogames.index')}}" class="btn btn-primary">Modificha il Catalogo</a>
             </div>
             @endauth
             @guest
             <h1>Negozio di Videogiochi</h1>            
+            <p>Titoli Disponibili</p>
             @endguest
         </div>
 
