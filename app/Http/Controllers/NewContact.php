@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
+use App\Models\NewsLetter;
+use App\Mail\NewContactEmail;
+use Illuminate\Support\Facades\Mail;
+
 
 class NewContact extends Controller
 {
@@ -29,5 +34,20 @@ class NewContact extends Controller
         if ($validate->fails()) {
             return response()->json(['errors' => $validate->errors()], 401);
         }
+        $data = $request->all();
+        $sent = 'il messaggio è stato inviato';
+        if (Arr::exists($data, 'subscribe') && $data['subscribe']) {
+            $exists = NewsLetter::where('email', $data['email'])->get();
+
+            if (!count($exists)) {
+                $new_member = new NewsLetter();
+                $new_member->email = $data['email'];
+                $new_member->save();
+                $sent = 'Ora sei iscritto alla news Letter';
+            }
+        }
+        $email = new NewContactEmail($data);
+        Mail::to('Videogames@example.com')->send($email);
+        return response()->json(['message' => $sent]);
     }
 }
