@@ -18,7 +18,7 @@ class NewRelese extends Mailable
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -28,6 +28,7 @@ class NewRelese extends Mailable
     {
         return new Envelope(
             subject: 'New Relese',
+
         );
     }
 
@@ -37,7 +38,7 @@ class NewRelese extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.newRelese',
         );
     }
 

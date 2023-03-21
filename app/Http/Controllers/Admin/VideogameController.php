@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use illuminate\Support\Facades\Mail;
 use App\Models\Videogame;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mail\NewRelese;
 
 class VideogameController extends Controller
 {
@@ -13,7 +16,7 @@ class VideogameController extends Controller
     public function index()
     {
         $videogames = Videogame::all();
-        
+
         return view("admin.videogames.index", compact("videogames"));
     }
 
@@ -22,7 +25,7 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        $videogame=new Videogame();
+        $videogame = new Videogame();
         return view("admin.videogames.create", compact("videogame"));
     }
 
@@ -33,11 +36,13 @@ class VideogameController extends Controller
     {
 
         $data = $request->all();
-        $videogame=new Videogame();
+        $videogame = new Videogame();
         $videogame->fill($data);
         $videogame->available = isset($data['available']);
         $videogame->description = $data["description"];
         $videogame->save();
+        Mail::to('daniele@email.it')->send(new NewRelese());
+
         return redirect()->route('admin.videogames.index');
     }
 
@@ -54,9 +59,9 @@ class VideogameController extends Controller
      */
     public function edit(Videogame $videogame)
     {
-        $videogames=Videogame::all();
+        $videogames = Videogame::all();
         $videogame->pluck("id")->toArray();
-        return view ("admin.videogames.edit", compact("videogame"));
+        return view("admin.videogames.edit", compact("videogame"));
     }
 
     /**
@@ -67,14 +72,14 @@ class VideogameController extends Controller
         $data = $request->all();
         $data["available"] = isset($data["available"]) ? 1 : 0;
         $videogame->description = $data["description"];
-     
-        
+
+
         $videogame->update($data);
         $videogame->save();
         return redirect()->route("admin.videogames.index", $videogame->id);
     }
-    
-    
+
+
 
     /**
      * Remove the specified resource from storage.
